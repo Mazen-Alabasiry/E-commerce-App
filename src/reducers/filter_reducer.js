@@ -83,6 +83,7 @@ const filter_reducer = (state, action) => {
     case CLEAR_FILTERS:
       return {
         ...state,
+        filtered_products: [],
         filters: {
           ...state.filters,
           text: '',
@@ -93,10 +94,10 @@ const filter_reducer = (state, action) => {
           shipping: false,
         },
       }
-    default: return state;
+    default: throw new Error(`No Matching "${action.type}" - action type`)
 
   }
-  throw new Error(`No Matching "${action.type}" - action type`)
+
 }
 
 export default filter_reducer

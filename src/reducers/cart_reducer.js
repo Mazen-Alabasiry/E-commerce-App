@@ -4,9 +4,11 @@ import {
   COUNT_CART_TOTALS,
   REMOVE_CART_ITEM,
   TOGGLE_CART_ITEM_AMOUNT,
-  SYNC_CART_LENGTH
+  SYNC_CART_LENGTH,
+  SYNC_LOCAL_STORAGE,
+  ADD_TO_LOCAL_STORAGE
 } from '../actions'
-import { AddToCart } from '../components';
+
 
 const cart_reducer = (state, action) => {
 
@@ -27,6 +29,7 @@ const cart_reducer = (state, action) => {
             return cartItem
           }
         })
+
         return { ...state, cartItems: tempCart }
       } else {
         let shipping = false
@@ -43,6 +46,7 @@ const cart_reducer = (state, action) => {
           max: product.stock,
           shipping: shipping
         }
+
         return { ...state, cartItems: [...state.cartItems, newItem] }
       }
     ///////////////////////////////////////////////////////////////////////////////
@@ -98,9 +102,27 @@ const cart_reducer = (state, action) => {
         return item
       })
       return { ...state, cartItems: tempCart }
-    default: return state;
+    ///////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////
+    case ADD_TO_LOCAL_STORAGE:
+      if (localStorage.getItem('name')) {
+        localStorage.setItem('cart', JSON.stringify(state))
+      }
+      return ({ ...state });
+    ///////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////
+    case SYNC_LOCAL_STORAGE:
+      if (localStorage.getItem('name')) {
+        const newState = JSON.parse(localStorage.getItem('cart'))
+        return (newState)
+      } else {
+        return ({ ...state })
+      }
+    default:
+      throw new Error(`No Matching "${action.type}" - action type`)
   }
-  throw new Error(`No Matching "${action.type}" - action type`)
+
+
 }
 
 export default cart_reducer

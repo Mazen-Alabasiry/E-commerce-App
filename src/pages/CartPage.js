@@ -15,6 +15,8 @@ const CartPage = () => {
       </div>
     </Wrapper>
   }
+
+
   return <Wrapper>
     <PageHero location={'cart'} link='home' />
     <main>

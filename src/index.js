@@ -11,14 +11,14 @@ import { BrowserRouter as Router } from 'react-router-dom'
 const root = createRoot(document.getElementById("root"));
 root.render(
     <Router>
-        <UserProvider>
-            <CartProvider>
+        <CartProvider>
+            <UserProvider>
                 <ProductsProvider>
                     <FilterProvider>
                         <App />
                     </FilterProvider>
                 </ProductsProvider>
-            </CartProvider>
-        </UserProvider>
+            </UserProvider>
+        </CartProvider>
     </Router>
 )

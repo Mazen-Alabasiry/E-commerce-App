@@ -3,9 +3,18 @@ import { useFilterContext } from '../context/filter_context'
 import { BsFillGridFill, BsList } from 'react-icons/bs'
 import styled from 'styled-components'
 const Sort = () => {
-  let { state, setGridView, setListView, updateSort } = useFilterContext()
+  let { state, setGridView, setListView, updateSort, initialState } = useFilterContext()
   let { grid_view, filtered_products, sort } = state;
+  let clearFlag = false
 
+  if (filtered_products.length === 0) {
+    if (initialState.filters.company === state.filters.company && initialState.filters.category === state.filters.category &&
+      initialState.filters.text === state.filters.text && initialState.filters.color === state.filters.color &&
+      initialState.filters.shipping === state.filters.shipping) {
+      clearFlag = true;
+    }
+
+  }
   return <Wrapper>
     <div className='btn-container'>
       <button className={grid_view ? 'active' : null}
@@ -14,7 +23,7 @@ const Sort = () => {
       <button className={!grid_view ? 'active' : null}
         onClick={setListView}><BsList /></button>
     </div>
-    <p>{(filtered_products.length) + ' products found'}</p>
+    <p>{(clearFlag ? 23 : (filtered_products.length)) + ' products found'}</p>
     <hr />
     <form onSubmit={e => e.preventDefault()}>
       <label htmlFor='sort'>sort by</label>

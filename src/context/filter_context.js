@@ -77,13 +77,12 @@ export const FilterProvider = ({ children }) => {
   const updateFilters = (e) => {
     dispatch({ type: UPDATE_FILTERS, payload: { key: e.target.name, value: e.target.value } })
     dispatch({ type: FILTER_PRODUCTS })
-    // console.log(state)
   }
   const clearFilters = () => {
     dispatch({ type: CLEAR_FILTERS })
   }
   return (
-    <FilterContext.Provider value={{ state, setGridView, setListView, updateSort, updateFilters, clearFilters }}>
+    <FilterContext.Provider value={{ state, initialState, setGridView, setListView, updateSort, updateFilters, clearFilters }}>
       {children}
     </FilterContext.Provider>
   )

@@ -26,7 +26,7 @@ const CartItem = ({ item }) => {
     </div>
     <h5 className='price'>{formatPrice(item.price)}</h5>
     <AmountButtons amount={item.amount} increase={increase} decrease={decrease} />
-    <h5 className='subtotal'>{formatPrice(item.price * state.cartLength)}</h5>
+    <h5 className='subtotal'>{formatPrice(item.price * item.amount)}</h5>
     <button className='remove-btn' onClick={() => removeItem(item.id, state.cartLength)}>
       <FaTrash />
     </button>

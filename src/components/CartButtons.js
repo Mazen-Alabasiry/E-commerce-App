@@ -8,7 +8,7 @@ import { useUserContext } from '../context/user_context'
 import { signInWithGoogle } from '../firebase'
 
 const CartButtons = () => {
-  let { signInUser, signOutUser, currentUser } = useUserContext();
+  let { signInUser, signOutUser } = useUserContext();
   let { state } = useCartContext();
   let { handelSidebar } = useProductsContext();
   ////
@@ -20,12 +20,13 @@ const CartButtons = () => {
     })
   }
 
+
   return <Wrapper className='cart-btn-wrapper' onClick={handelSidebar}>
     <Link className='cart-btn' to={'/cart'}>Cart <span className='cart-container' >
       <FaShoppingCart /> <span className='cart-value'>{state.cartLength}</span></span>
     </Link>
     {
-      Object.keys(currentUser).length > 0 ?
+      localStorage.getItem('name') ?
         <button className='auth-btn' onClick={signOutUser}>Logout<FaUserMinus /></button>
         :
         <button className='auth-btn' onClick={signInGoogle}>Login<FaUserPlus /></button>

@@ -3,11 +3,18 @@ import styled from 'styled-components'
 import { useCartContext } from '../context/cart_context'
 import { useUserContext } from '../context/user_context'
 import { formatPrice } from '../utils/helpers'
-import { Link } from 'react-router-dom'
-
+import { signInWithGoogle } from '../firebase'
 const CartTotals = () => {
   let { state } = useCartContext();
-
+  let { signInUser } = useUserContext();
+  ////
+  let signInGoogle = () => {
+    signInWithGoogle().then(res => {
+      signInUser(res.user)
+    }).catch(error => {
+      console.log(error.message)
+    })
+  }
   return <Wrapper>
     <div>
       <article>
@@ -22,9 +29,10 @@ const CartTotals = () => {
           order total :<span>{formatPrice(state.cartTotal + state.shipping)}</span>
         </h4>
       </article>
-      <button className='btn'>
-        login
-      </button>
+      {
+        !(localStorage.getItem('name')) &&
+        <button className='btn' onClick={signInGoogle}>Login</button>
+      }
     </div>
   </Wrapper>
 }

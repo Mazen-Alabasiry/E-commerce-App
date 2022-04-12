@@ -8,6 +8,7 @@ import CartTotals from './CartTotals'
 
 const CartContent = () => {
   let { state, clearCart } = useCartContext();
+
   return <Wrapper className='section section-center'>
     <CartColumns />
     {state.cartItems.map(item => <CartItem key={item.id} item={item} />)}
