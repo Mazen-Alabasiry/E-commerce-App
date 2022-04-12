@@ -1,0 +1,44 @@
+import {
+  SIDEBAR_OPEN,
+  SIDEBAR_CLOSE,
+  HANDEL_SIDEBAR,
+  GET_PRODUCTS_BEGIN,
+  GET_PRODUCTS_SUCCESS,
+  GET_PRODUCTS_ERROR,
+  GET_SINGLE_PRODUCT_BEGIN,
+  GET_SINGLE_PRODUCT_SUCCESS,
+  GET_SINGLE_PRODUCT_ERROR,
+} from '../actions'
+
+const products_reducer = (state, action) => {
+  switch (action.type) {
+    case GET_PRODUCTS_BEGIN:
+      return ({ ...state, loading: true })
+    /////////
+    case GET_PRODUCTS_SUCCESS:
+      let featured = action.payload.filter(product => product.featured && product)
+      return ({ ...state, products: action.payload, featuredProducts: featured, loading: false })
+    //////////
+    case GET_PRODUCTS_ERROR:
+      return ({ ...state, error: action.payload, loading: false })
+    //////////
+    case GET_SINGLE_PRODUCT_BEGIN:
+      return ({ ...state, loading: true })
+    //////////
+    case GET_SINGLE_PRODUCT_SUCCESS:
+      return ({ ...state, singleProduct: action.payload, loading: false })
+    //////////
+    case GET_SINGLE_PRODUCT_ERROR:
+      return ({ ...state, error: action.payload, loading: false })
+    //////////
+    case HANDEL_SIDEBAR:
+      return ({ ...state, sidebar: !(state.sidebar) })
+    //////////
+
+    default: return state
+  }
+
+  throw new Error(`No Matching "${action.type}" - action type`)
+}
+
+export default products_reducer
