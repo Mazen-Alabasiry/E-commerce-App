@@ -5,20 +5,13 @@ import styled from 'styled-components'
 import { useProductsContext } from '../context/products_context'
 import { useCartContext } from '../context/cart_context'
 import { useUserContext } from '../context/user_context'
-import { signInWithGoogle } from '../firebase'
+
 
 const CartButtons = () => {
   let { signInUser, signOutUser } = useUserContext();
   let { state } = useCartContext();
   let { handelSidebar } = useProductsContext();
   ////
-  let signInGoogle = () => {
-    signInWithGoogle().then(res => {
-      signInUser(res.user)
-    }).catch(error => {
-      console.log(error.message)
-    })
-  }
 
 
   return <Wrapper className='cart-btn-wrapper' onClick={handelSidebar}>
@@ -29,7 +22,7 @@ const CartButtons = () => {
       localStorage.getItem('name') ?
         <button className='auth-btn' onClick={signOutUser}>Logout<FaUserMinus /></button>
         :
-        <button className='auth-btn' onClick={signInGoogle}>Login<FaUserPlus /></button>
+        <button className='auth-btn' onClick={signInUser}>Login<FaUserPlus /></button>
     }
 
   </Wrapper>
