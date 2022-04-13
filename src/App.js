@@ -7,7 +7,8 @@ import ProductsPage from './pages/ProductsPage'
 import SingleProductPage from './pages/SingleProductPage'
 import ErrorPage from './pages/ErrorPage'
 import CartPage from './pages/CartPage'
-
+import Login from './pages/Login'
+import SignUp from './pages/SignUp'
 function App() {
   return <>
     <Navbar />
@@ -18,6 +19,8 @@ function App() {
       <Route exact path='/products' element={<ProductsPage />} />
       <Route exact path='/products/:id' element={<SingleProductPage />} />
       <Route exact path='/cart' element={<CartPage />} />
+      <Route exact path='/login' element={<Login />} />
+      <Route exact path='/signUp' element={<SignUp />} />
       <Route exact path='*' element={<ErrorPage />} />
     </Routes>
   </>

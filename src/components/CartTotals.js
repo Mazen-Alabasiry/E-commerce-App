@@ -4,6 +4,7 @@ import { useCartContext } from '../context/cart_context'
 import { useUserContext } from '../context/user_context'
 import { formatPrice } from '../utils/helpers'
 import { signInWithGoogle } from '../firebase'
+import { Link } from 'react-router-dom'
 const CartTotals = () => {
   let { state } = useCartContext();
   let { signInUser } = useUserContext();
@@ -31,7 +32,8 @@ const CartTotals = () => {
       </article>
       {
         !(localStorage.getItem('name')) &&
-        <button className='btn' onClick={signInGoogle}>Login</button>
+        <Link className='btn' to={'/login'}>Login</Link>
+
       }
     </div>
   </Wrapper>

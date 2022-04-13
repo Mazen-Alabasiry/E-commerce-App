@@ -204,3 +204,19 @@ p {
 .page {
   min-height: calc(100vh - (20vh + 10rem));
 }
+.login-span{
+  position: relative;
+  padding: 0 5px;
+  background-color: white;
+}
+.login-span::before{
+    content: '';
+    position: absolute;
+    width: 200px;
+    background-color: #000000a3;
+    transform: translate(-50%,-50%);
+    height: 1px;
+    left: 50%;
+    top: 50%;
+    z-index: -1;
+}

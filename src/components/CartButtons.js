@@ -8,7 +8,7 @@ import { useUserContext } from '../context/user_context'
 
 
 const CartButtons = () => {
-  let { signInUser, signOutUser } = useUserContext();
+  let { signOutUser } = useUserContext();
   let { state } = useCartContext();
   let { handelSidebar } = useProductsContext();
   ////
@@ -22,7 +22,7 @@ const CartButtons = () => {
       localStorage.getItem('name') ?
         <button className='auth-btn' onClick={signOutUser}>Logout<FaUserMinus /></button>
         :
-        <button className='auth-btn' onClick={signInUser}>Login<FaUserPlus /></button>
+        <Link className='auth-btn' to={'/login'}>Login<FaUserPlus /></Link>
     }
 
   </Wrapper>
