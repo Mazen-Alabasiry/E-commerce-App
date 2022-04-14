@@ -24,6 +24,7 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: space-between;
     margin-top: 2rem;
+    gap:10px
   }
   .link-btn {
     background: transparent;
@@ -36,6 +37,7 @@ const Wrapper = styled.section`
     letter-spacing: var(--spacing);
     font-weight: 400;
     cursor: pointer;
+
   }
   .clear-btn {
     background: var(--clr-black);

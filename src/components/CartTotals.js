@@ -64,10 +64,17 @@ const Wrapper = styled.section`
     justify-content: flex-end;
   }
   .btn {
-    width: 100%;
+    width: 80%;
     margin-top: 1rem;
     text-align: center;
     font-weight: 700;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    
+      @media (min-width: 776px) {
+    width:100%
+  }
   }
 `
 

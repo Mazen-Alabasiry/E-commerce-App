@@ -19,11 +19,9 @@ export const UserProvider = ({ children }) => {
       .then(res => {
         signIn(res.user)
         navigate('/');
-        console.log('user created:', res.user)
       })
       .catch(err => {
         setError((err.code.toString().split('/')[1].toUpperCase().split('-').join(' ')))
-        console.log(err.code)
       })
   }
   // 2- first sign in exist user
@@ -33,7 +31,6 @@ export const UserProvider = ({ children }) => {
       navigate('/');
     }).catch(err => {
       setError((err.code.toString().split('/')[1].toUpperCase().split('-').join(' ')))
-      console.log((err.message))
     })
 
   }
@@ -44,7 +41,6 @@ export const UserProvider = ({ children }) => {
       navigate('/');
     }).catch(err => {
       setError((err.code.toString().split('/')[1].toUpperCase().split('-').join(' ')))
-      console.log(error.message)
     })
 
   }
@@ -60,10 +56,7 @@ export const UserProvider = ({ children }) => {
     // })
 
     setCurrentUser({})
-    localStorage.removeItem('name')
-    localStorage.removeItem('email')
-    localStorage.removeItem('photo')
-    localStorage.removeItem('cart')
+    localStorage.clear();
   }
 
   ///////////////
